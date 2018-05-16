@@ -122,7 +122,7 @@ unsigned long validar_archivo(FILE* fp, unsigned int* filas, unsigned int* colum
   int c;
   while (!feof(fp)) {
     c = fgetc(fp);
-    if (!(c == ' ' || c == '\n' || c == EOF || (c >= '0' && c <= '9'))) {
+    if (!(c == ' ' || c == '\n' || c == EOF || (c >= '0' && c <= '9') || c == '-')) {
       fprintf( stderr, "El archivo no contiene solamente enteros.\n");
       exit(1);
     }
@@ -172,8 +172,8 @@ void procesar_archivos(char* output_filename, char* input_filename) {
   }
   fclose(fp);
 
-  //trasponer(filas, columnas, entrada, salida);
-  trasponer_ass(filas, columnas, entrada, salida);
+  trasponer(filas, columnas, entrada, salida);
+  //trasponer_ass(filas, columnas, entrada, salida);
   free(entrada);
 
   if (output_filename == NULL) {
